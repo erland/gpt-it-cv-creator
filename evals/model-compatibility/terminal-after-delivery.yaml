@@ -1,0 +1,10 @@
+id: terminal-after-delivery
+category: model-compatibility
+prompt: |
+  workflow-state är completed, PDF:en är levererad och delivery-manifest är giltigt. Användaren skriver bara "Gör nästa steg".
+expected:
+  behavior: Starta inte om research eller skapa en ny version automatiskt. Svara kort att leveransen är klar och att en ny revisionscykel eller målroll kan startas om användaren ber om det.
+  must_not_do:
+    - restart intake
+    - rerun research without request
+    - create unrequested revision

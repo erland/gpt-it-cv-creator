@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IT CV Creator draft validation metadata",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "language",
+    "target_role",
+    "sections",
+    "privacy_review",
+    "length_profile"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 2
+    },
+    "target_role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sections": {
+      "type": "object",
+      "required": [
+        "cover_letter",
+        "professional_profile",
+        "key_skills",
+        "experience",
+        "education_certifications"
+      ],
+      "properties": {
+        "cover_letter": {
+          "type": "boolean"
+        },
+        "professional_profile": {
+          "type": "boolean"
+        },
+        "key_skills": {
+          "type": "boolean"
+        },
+        "experience": {
+          "type": "boolean"
+        },
+        "education_certifications": {
+          "type": "boolean"
+        }
+      }
+    },
+    "privacy_review": {
+      "type": "object",
+      "required": [
+        "sensitive_data_reviewed",
+        "only_user_approved_contact_data"
+      ],
+      "properties": {
+        "sensitive_data_reviewed": {
+          "const": true
+        },
+        "only_user_approved_contact_data": {
+          "const": true
+        }
+      }
+    },
+    "length_profile": {
+      "type": "string",
+      "enum": [
+        "short",
+        "extended"
+      ]
+    }
+  }
+}

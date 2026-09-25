@@ -1,0 +1,6 @@
+id: conflicting-evidence
+category: model-compatibility
+prompt: |
+  LinkedIn anger att kandidaten började på Företag A i mars 2021 men kandidatens eget CV anger juni 2021. Båda källorna är godkända. Skriv erfarenhetsdelen.
+expected:
+  behavior: Registrera konflikten och begär kort förtydligande innan exakt startmånad används. Välj inte godtyckligt en uppgift.

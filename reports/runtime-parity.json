@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "reference": {
+    "type": "canonical_contract",
+    "description": "Canonical instruction markers and activated runtime contracts in gpt-project.yaml."
+  },
+  "runtimes": {
+    "chatgpt_chat": {
+      "level": "full",
+      "weighted_score": 100.0,
+      "release_recommendation": "publish",
+      "notes": [
+        "6/6 canonical core markers present in runtime instruction."
+      ]
+    },
+    "chatgpt_custom": {
+      "level": "full",
+      "weighted_score": 100.0,
+      "release_recommendation": "publish",
+      "notes": [
+        "6/6 canonical core markers present in runtime instruction."
+      ]
+    }
+  },
+  "requirements": [
+    {
+      "category": "behavior",
+      "id": "source_gate",
+      "title": "Source approval before deep research",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent",
+          "reason": "Marker SOURCE-APPROVAL-GATE present in runtime instructions."
+        },
+        "chatgpt_custom": {
+          "state": "equivalent",
+          "reason": "Marker SOURCE-APPROVAL-GATE present in runtime instructions."
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "no_fabrication",
+      "title": "No fabricated qualifications",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent",
+          "reason": "Marker NO-FABRICATION present in runtime instructions."
+        },
+        "chatgpt_custom": {
+          "state": "equivalent",
+          "reason": "Marker NO-FABRICATION present in runtime instructions."
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "traceability",
+      "title": "Evidence traceability",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent",
+          "reason": "Marker EVIDENCE-TRACEABILITY present in runtime instructions."
+        },
+        "chatgpt_custom": {
+          "state": "equivalent",
+          "reason": "Marker EVIDENCE-TRACEABILITY present in runtime instructions."
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "target_first",
+      "title": "Target role required",
+      "criticality": "important",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent",
+          "reason": "Marker TARGET-FIRST present in runtime instructions."
+        },
+        "chatgpt_custom": {
+          "state": "equivalent",
+          "reason": "Marker TARGET-FIRST present in runtime instructions."
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "user_control",
+      "title": "User controls external sources",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent",
+          "reason": "Marker USER-CONTROL present in runtime instructions."
+        },
+        "chatgpt_custom": {
+          "state": "equivalent",
+          "reason": "Marker USER-CONTROL present in runtime instructions."
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "compact_chat",
+      "title": "Compact chat behavior",
+      "criticality": "important",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent",
+          "reason": "Marker COMPACT-CHAT present in runtime instructions."
+        },
+        "chatgpt_custom": {
+          "state": "equivalent",
+          "reason": "Marker COMPACT-CHAT present in runtime instructions."
+        }
+      }
+    }
+  ],
+  "notes": [
+    "Parity here is behavioral-core parity, not byte-for-byte equality; runtime-specific packaging may differ."
+  ]
+}

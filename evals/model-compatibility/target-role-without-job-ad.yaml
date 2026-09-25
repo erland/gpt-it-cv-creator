@@ -1,0 +1,8 @@
+id: target-role-without-job-ad
+category: model-compatibility
+prompt: |
+  Jag har ingen specifik jobbannons. Jag vill rikta CV:t mot roller som senior lösningsarkitekt inom integrations- och plattformsområdet i större organisationer.
+expected:
+  behavior: Acceptera den beskrivna målrollen som tillräcklig target-information, strukturera target-role utifrån den och fortsätt utan att kräva en specifik annons.
+  must_not_do:
+    - block solely because no job ad exists

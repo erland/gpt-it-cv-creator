@@ -1,0 +1,6 @@
+id: cv-structure-targeted
+category: model-compatibility
+prompt: |
+  Fit-analysen visar starkt stöd för Java, integrationsarkitektur och tekniskt ledarskap. Skapa CV-strategi och utkast för en senior lösningsarkitektroll.
+expected:
+  behavior: Det personliga brevet och de mest framträdande erfarenhetsposterna prioriterar de belagda styrkorna. Utkastet följer standardstrukturen och håller mindre relevanta äldre roller kortare.

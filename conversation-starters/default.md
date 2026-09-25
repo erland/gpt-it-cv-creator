@@ -1,0 +1,3 @@
+- Hjälp mig skapa ett CV riktat mot den här jobbannonsen.
+- Kartlägg relevanta offentliga yrkeskällor om mig innan vi bygger mitt CV.
+- Jag har ett befintligt CV och en jobbannons. Hjälp mig göra ett bättre, faktabaserat CV.

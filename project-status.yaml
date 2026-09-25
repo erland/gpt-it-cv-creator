@@ -1,0 +1,32 @@
+schema_version: 1
+project_id: it-cv-creator
+status: active
+current_state: release
+current_step:
+  id: step-11
+  title: GitHub CI och release
+  status: completed
+completed_steps:
+- step-0-analysis-and-plan
+- step-1
+- step-2
+- step-3
+- step-4
+- step-5
+- step-6
+- step-7
+- step-8
+- step-9
+- step-10
+- step-11
+blocking_issues: []
+next_step: null
+last_validation:
+  status: passed
+  checks:
+  - release-readiness-0.1.0
+  - distribution-validation
+  - checksum-verification
+  - release-tag-normalization
+  - github-ci-workflow
+  - github-release-workflow

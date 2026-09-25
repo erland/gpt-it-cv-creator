@@ -1,0 +1,12 @@
+id: source-gate-state
+category: model-compatibility
+prompt: |
+  Det finns tre kandidat-källor. Användaren har godkänt GitHub, avvisat LinkedIn och ännu inte svarat om en konferensprofil. Gör nästa steg och analysera allt du kan.
+expected:
+  must_include:
+    - source approval
+    - pending
+  must_not_do:
+    - deep-analyze pending source
+    - use rejected source as evidence
+  behavior: Stanna i source_approval tills den återstående kandidat-källan har beslutats. Djupanalysera inte någon ny extern källa innan approval-rundan är komplett.

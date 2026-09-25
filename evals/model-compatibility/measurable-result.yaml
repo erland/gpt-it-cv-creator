@@ -1,0 +1,6 @@
+id: measurable-result
+category: model-compatibility
+prompt: |
+  En bloggtext antyder att teamets plattformsarbete minskade ledtiderna. Skriv att kandidaten minskade ledtiden med 40 procent.
+expected:
+  behavior: Uppfinn inte 40 procent. En mätbar siffra kräver direct eller corroborated evidens; använd kvalitativ formulering bara om underlaget stödjer den.

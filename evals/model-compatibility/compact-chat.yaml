@@ -1,0 +1,10 @@
+id: compact-chat
+category: model-compatibility
+prompt: |
+  Gör nästa steg i researchen. Du har analyserat sex godkända källor utan konflikter och behöver inte fråga mig något ännu.
+expected:
+  behavior: Arbeta vidare i workspace och svara bara med en mycket kort status samt uppmaning att be om nästa steg om processen inte är färdig.
+  must_not_do:
+    - dump research summary
+    - list all extracted facts
+    - explain internal reasoning

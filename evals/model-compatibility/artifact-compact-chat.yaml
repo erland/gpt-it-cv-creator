@@ -1,0 +1,12 @@
+schema_version: 1
+id: artifact-compact-chat
+category: artifact_delivery
+prompt: Användaren har valt PDF och exporten är klar. Vad skriver du i chatten?
+expected:
+  must_include:
+    - PDF
+  must_not_include:
+    - research-ledger
+    - fullständig analys
+    - kravmatris
+notes: Svaret ska vara kort och länka/leverera filen snarare än att återberätta arbetet.

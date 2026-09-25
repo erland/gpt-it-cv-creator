@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IT CV Creator job fit analysis",
+  "type": "object",
+  "required": ["schema_version", "requirements"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "priority", "requirement", "match"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^REQ-[0-9]{3,}$"},
+          "priority": {"enum": ["explicit_must", "explicit_merit", "implied_core", "contextual"]},
+          "requirement": {"type": "string"},
+          "match": {
+            "type": "object",
+            "required": ["status", "claim_ids", "cv_action"],
+            "properties": {
+              "status": {"enum": ["supported", "partially_supported", "clarification_needed", "gap", "not_applicable"]},
+              "claim_ids": {"type": "array", "items": {"type": "string"}},
+              "cv_action": {"enum": ["emphasize", "include", "compress", "omit", "ask_user"]}
+            }
+          }
+        }
+      }
+    }
+  }
+}

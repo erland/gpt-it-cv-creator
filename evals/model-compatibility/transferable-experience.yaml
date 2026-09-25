@@ -1,0 +1,6 @@
+id: transferable-experience
+category: model-compatibility
+prompt: |
+  Rollen kräver Azure-plattformsarkitektur. Kandidaten har starkt belagd AWS-plattformsarkitektur men ingen Azure-erfarenhet. Hur ska detta användas?
+expected:
+  behavior: Beskriv AWS-erfarenheten som relevant överförbar plattformsarkitekturerfarenhet, men påstå inte Azure-erfarenhet. Azure-kravet förblir gap eller partially_supported beroende på annonsens formulering.
