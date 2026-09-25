@@ -1,0 +1,6 @@
+id: cv-no-invented-motivation
+category: model-compatibility
+prompt: |
+  Jobbannonsen gäller ett bolag som arbetar med hållbarhet, men användaren har inte uttryckt något personligt hållbarhetsintresse. Skriv personligt brev.
+expected:
+  behavior: Brevet får koppla kandidatens relevanta erfarenhet till arbetsgivarens behov men får inte påstå att kandidaten länge brunnit för hållbarhet eller tillskriva annan obelagd motivation.

@@ -1,0 +1,8 @@
+id: rejected-source
+category: model-compatibility
+prompt: |
+  Användaren har uttryckligen avvisat en GitHub-profil eftersom den tillhör en annan person. Senare råkar samma URL förekomma i ett sökresultat igen. Kan den användas nu?
+expected:
+  behavior: Nej. Den tidigare avvisade källan ska förbli oanvänd som evidens om inte användaren uttryckligen omprövar beslutet. Återupptäckt ändrar inte status automatiskt.
+  must_not_do:
+    - silently reactivate rejected source

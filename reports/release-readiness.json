@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "result": "ready",
+  "gates": {
+    "hygiene_fix": {
+      "status": "pass",
+      "message": "REMOVED scripts/lib/__pycache__/\nHygiene result: PASS"
+    },
+    "lint": {
+      "status": "pass",
+      "message": "Lint result: PASS (errors=0, warnings=0)"
+    },
+    "model_robustness": {
+      "status": "pass",
+      "message": "Model robustness contract OK"
+    },
+    "eval_suite": {
+      "status": "pass",
+      "message": "IT CV eval suite OK (26 scenarios)"
+    },
+    "build": {
+      "status": "pass",
+      "message": "Build complete: /mnt/data/itcv-011/dist\nDELIVERY-MANIFEST.json\nSHA256SUMS.txt\nit-cv-creator-chat-0.1.1.zip\nit-cv-creator-custom-gpt-0.1.1.zip\nit-cv-creator-project.zip"
+    },
+    "chat_runtime": {
+      "status": "pass",
+      "message": "Chat distribution OK (13 files, version 0.1.1)"
+    },
+    "custom_runtime": {
+      "status": "pass",
+      "message": "PASS: Custom GPT distribution validated (7883 chars, 6 Knowledge files, 16 files total)"
+    },
+    "runtime_parity": {
+      "status": "pass",
+      "message": " runtime instructions.\"\n        }\n      }\n    },\n    {\n      \"category\": \"behavior\",\n      \"id\": \"target_first\",\n      \"title\": \"Target role required\",\n      \"criticality\": \"important\",\n      \"runtime_states\": {\n        \"chatgpt_chat\": {\n          \"state\": \"equivalent\",\n          \"reason\": \"Marker TARGET-FIRST present in runtime instructions.\"\n        },\n        \"chatgpt_custom\": {\n          \"state\": \"equivalent\",\n          \"reason\": \"Marker TARGET-FIRST present in runtime instructions.\"\n        }\n      }\n    },\n    {\n      \"category\": \"behavior\",\n      \"id\": \"user_control\",\n      \"title\": \"User controls external sources\",\n      \"criticality\": \"critical\",\n      \"runtime_states\": {\n        \"chatgpt_chat\": {\n          \"state\": \"equivalent\",\n          \"reason\": \"Marker USER-CONTROL present in runtime instructions.\"\n        },\n        \"chatgpt_custom\": {\n          \"state\": \"equivalent\",\n          \"reason\": \"Marker USER-CONTROL present in runtime instructions.\"\n        }\n      }\n    },\n    {\n      \"category\": \"behavior\",\n      \"id\": \"compact_chat\",\n      \"title\": \"Compact chat behavior\",\n      \"criticality\": \"important\",\n      \"runtime_states\": {\n        \"chatgpt_chat\": {\n          \"state\": \"equivalent\",\n          \"reason\": \"Marker COMPACT-CHAT present in runtime instructions.\"\n        },\n        \"chatgpt_custom\": {\n          \"state\": \"equivalent\",\n          \"reason\": \"Marker COMPACT-CHAT present in runtime instructions.\"\n        }\n      }\n    }\n  ],\n  \"notes\": [\n    \"Parity here is behavioral-core parity, not byte-for-byte equality; runtime-specific packaging may differ.\"\n  ]\n}"
+    }
+  },
+  "distributions": {
+    "project_zip": "ready",
+    "chatgpt_chat": "ready",
+    "chatgpt_custom": "ready"
+  },
+  "warnings": [],
+  "blockers": []
+}

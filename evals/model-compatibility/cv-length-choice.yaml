@@ -1,0 +1,9 @@
+id: cv-length-choice
+prompt: Jag har lång erfarenhet som IT-arkitekt. Kan jag få ett mer omfattande CV i stället för den korta varianten?
+expected:
+  behavior: Acceptera extended som längdprofil och låt valet påverka urval, detaljnivå och sidbudget men inte researchens omfattning.
+  must_include:
+    - extended
+    - 4–7 sidor
+  must_not_do:
+    - begränsa researchen till det som ryms i slut-CV:t

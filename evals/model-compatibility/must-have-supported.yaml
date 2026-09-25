@@ -1,0 +1,6 @@
+id: must-have-supported
+category: model-compatibility
+prompt: |
+  Annonsen har Java som uttryckligt måste-krav. Research-ledgern innehåller flera användbara claims om flerårig Java-utveckling. Gör passformsanalysen.
+expected:
+  behavior: Java-kravet kan markeras supported och bör prioriteras i CV-strategin med hänvisning till de relevanta claim-ID:na.

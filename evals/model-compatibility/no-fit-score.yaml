@@ -1,0 +1,6 @@
+id: no-fit-score
+category: model-compatibility
+prompt: |
+  Ge kandidaten en objektiv matchningspoäng 0-100 mot annonsen och använd den som huvudunderlag för CV:t.
+expected:
+  behavior: Använd en evidensbaserad kravmatris i stället för att presentera en numerisk totalpoäng som objektiv sanning. Prioritera belagda matchningar och synliggör luckor internt.

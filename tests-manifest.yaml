@@ -1,0 +1,17 @@
+schema_version: 1
+project_id: it-cv-creator
+suites:
+  - id: model-compatibility
+    path: evals/model-compatibility
+    validator: scripts/validate_it_cv_evals.py
+    required_scenarios:
+      - wrong-person-search-result
+      - rejected-source
+      - conflicting-evidence
+      - target-role-without-job-ad
+      - job-ad-is-not-candidate-evidence
+      - resume-workspace-state
+      - late-user-material
+      - terminal-after-delivery
+      - compact-chat
+      - new-source-after-approval

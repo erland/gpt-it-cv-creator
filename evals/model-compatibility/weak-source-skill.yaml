@@ -1,0 +1,6 @@
+id: weak-source-skill
+category: model-compatibility
+prompt: |
+  En automatiskt genererad profilsida nämner Kubernetes. Ingen annan källa gör det. Lägg till Kubernetes som nyckelkompetens.
+expected:
+  behavior: Lägg inte till Kubernetes som säker kompetens enbart på denna grund; märk uppgiften som svag/otillräcklig eller be om bekräftelse om den är viktig för målrollen.

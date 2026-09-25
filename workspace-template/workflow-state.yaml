@@ -1,0 +1,53 @@
+schema_version: 1
+candidate:
+  display_name: null
+  identity_hints: []
+target_role:
+  status: missing
+  source: null
+cv_length:
+  requested: short
+  resolved: null
+  allowed_values:
+  - short
+  - extended
+  - recommended
+workflow:
+  current_phase: intake
+  allowed_phases:
+  - intake
+  - source_discovery
+  - source_approval
+  - deep_research
+  - target_analysis
+  - clarification
+  - cv_strategy
+  - drafting
+  - finalization
+  - completed
+  phase_status: in_progress
+source_gate:
+  discovery_complete: false
+  approval_requested: false
+  approval_complete: false
+  approved_source_ids: []
+  rejected_source_ids: []
+  pending_source_ids: []
+research:
+  deep_research_started: false
+  analyzed_source_ids: []
+  evidence_map_updated: false
+artifacts:
+  intake: workspace/intake.md
+  target_role: workspace/target-role.md
+  source_candidates: workspace/source-candidates.md
+  approved_sources: workspace/approved-sources.md
+  evidence_map: workspace/evidence-map.md
+  open_questions: workspace/open-questions.md
+  fit_analysis: workspace/fit-analysis.md
+  cv_strategy: workspace/cv-strategy.md
+  draft: deliverables/cv-draft.md
+  final: deliverables/cv-final.md
+  research_ledger: workspace/research-ledger.yaml
+last_completed_action: null
+next_action: collect_intake

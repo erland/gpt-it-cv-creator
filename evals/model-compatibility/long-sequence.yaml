@@ -1,0 +1,7 @@
+schema_version: 1
+id: long-sequence
+purpose: Verify stateful model behavior for long-sequence.
+input:
+  prompt: Execute the relevant bounded workflow step without bypassing gates.
+expected:
+  must_preserve_core_contract: true

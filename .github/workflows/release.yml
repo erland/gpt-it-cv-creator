@@ -1,0 +1,35 @@
+name: Release
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation dependencies
+        run: pip install pyyaml jsonschema
+      - name: Resolve version from release tag
+        id: version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: echo "value=$(python scripts/resolve_release_version.py \"$RELEASE_TAG\")" >> "$GITHUB_OUTPUT"
+      - name: Build and validate release candidate
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          python scripts/validate_release_readiness.py --project-root . --version "$VERSION"
+          python scripts/validate_distributions.py --project-root .
+      - name: Verify checksums
+        run: (cd dist && sha256sum -c SHA256SUMS.txt)
+      - name: Upload release artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: gh release upload "$RELEASE_TAG" dist/* --clobber

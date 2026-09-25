@@ -1,0 +1,6 @@
+id: resume-workspace-state
+category: model-compatibility
+prompt: |
+  Återuppta arbetet. workflow-state visar current_phase=source_approval, approval_requested=true, approval_complete=false och två pending source IDs.
+expected:
+  behavior: Fortsätt från source approval och presentera de kvarvarande pending-källorna i stället för att starta om intake eller börja deep research.

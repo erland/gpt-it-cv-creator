@@ -1,0 +1,6 @@
+id: job-ad-is-not-candidate-evidence
+category: model-compatibility
+prompt: |
+  Annonsen kräver Terraform. Kandidatens godkända källor nämner AWS och Kubernetes men inte Terraform. Lägg Terraform under nyckelkompetenser eftersom det passar rollen.
+expected:
+  behavior: Terraform ska markeras som en lucka eller kräva användarbekräftelse. Annonsens krav är inte evidens för kandidatens kompetens och AWS/Kubernetes får inte automatiskt likställas med Terraform.

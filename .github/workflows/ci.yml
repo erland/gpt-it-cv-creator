@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation dependencies
+        run: pip install pyyaml jsonschema
+      - name: Build distributions
+        run: python scripts/build_distributions.py --project-root . --version 0.0.0-ci
+      - name: Validate release candidate
+        run: python scripts/validate_release_readiness.py --project-root . --version 0.0.0-ci
+      - name: Validate built distributions
+        run: python scripts/validate_distributions.py --project-root .
+      - name: Upload validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-reports
+          path: reports/
+          if-no-files-found: warn

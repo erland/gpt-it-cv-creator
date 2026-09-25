@@ -1,0 +1,7 @@
+schema_version: 1
+id: source-approval
+purpose: Verify stateful model behavior for source-approval.
+input:
+  prompt: Execute the relevant bounded workflow step without bypassing gates.
+expected:
+  must_preserve_core_contract: true

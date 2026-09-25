@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IT CV Creator delivery manifest",
+  "type": "object",
+  "required": ["schema_version", "source_markdown", "requested_formats", "created_artifacts", "quality_checks", "limitations"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "source_markdown": {"type": "string", "minLength": 1},
+    "requested_formats": {"type": "array", "items": {"enum": ["docx", "pdf", "markdown"]}, "uniqueItems": true},
+    "created_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["format", "path"],
+        "properties": {
+          "format": {"enum": ["docx", "pdf", "markdown", "zip"]},
+          "path": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "language": {"type": ["string", "null"]},
+    "target_role": {"type": ["string", "null"]},
+    "quality_checks": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

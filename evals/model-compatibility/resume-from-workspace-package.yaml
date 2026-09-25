@@ -1,0 +1,12 @@
+schema_version: 1
+id: resume-from-workspace-package
+category: stateful_resume
+prompt: Ett tidigare research-workspace har laddats upp och workflow-state säger next_action=continue_target_analysis. Hur fortsätter du?
+expected:
+  must_include:
+    - workflow-state
+    - continue_target_analysis
+  must_not_include:
+    - börja om
+    - ny källsökning utan anledning
+notes: Workspace-state är auktoritativt vid återupptagning.

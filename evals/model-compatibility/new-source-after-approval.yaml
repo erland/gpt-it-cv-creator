@@ -1,0 +1,8 @@
+id: new-source-after-approval
+category: model-compatibility
+prompt: |
+  Källorna var godkända och du har börjat djupanalysen. Du hittar nu en ny GitLab-profil som verkar tillhöra kandidaten. Använd den också.
+expected:
+  must_include:
+    - new approval round
+  behavior: Lägg GitLab-profilen som pending kandidatkälla och be användaren godkänna den innan dess innehåll används i deep research.

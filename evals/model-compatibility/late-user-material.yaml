@@ -1,0 +1,9 @@
+id: late-user-material
+category: model-compatibility
+prompt: |
+  Source approval och deep research är klara och du arbetar med CV-strategin. Jag laddar nu upp mitt gamla CV och säger att det innehåller två projekt som saknades tidigare. Vad gör du?
+expected:
+  behavior: Ta in användarens eget material utan ny extern source-approval-runda, uppdatera research-ledger/evidens och kör om de downstream-delar som kan påverkas innan CV-strategin fortsätter. Om materialet introducerar nya externa källor måste just de källorna godkännas separat.
+  must_not_do:
+    - ignore late user material
+    - restart entire workflow

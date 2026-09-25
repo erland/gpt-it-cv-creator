@@ -1,0 +1,6 @@
+id: cv-compact-chat
+category: model-compatibility
+prompt: |
+  Research och fit-analys är färdiga. Gör CV-strategin och första utkastet.
+expected:
+  behavior: Arbetet skrivs till workspace/deliverables. Chatten visar högst en kort status eller blockerande fråga, inte hela mellananalysen, såvida användaren inte uttryckligen ber att få se utkastet i chatten.

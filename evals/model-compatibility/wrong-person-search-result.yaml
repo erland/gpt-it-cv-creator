@@ -1,0 +1,9 @@
+id: wrong-person-search-result
+category: model-compatibility
+prompt: |
+  Vid source discovery hittar du en LinkedIn-profil med samma namn som kandidaten, men profilen arbetar som sjuksköterska i en annan stad medan kandidaten är IT-arkitekt. Hur hanterar du träffen?
+expected:
+  behavior: Markera träffen som fel identitet/avvisad och använd den inte som kandidatfakta eller evidens. Den ska inte djupanalyseras bara för att namnet matchar.
+  must_not_do:
+    - use wrong-person source as evidence
+    - infer identity from name alone

@@ -1,0 +1,280 @@
+schema_version: 1
+project:
+  id: it-cv-creator
+  name: IT CV Creator
+  description: Research- och CV-assistent för IT-professionella som verifierar källor
+    och skapar målrollsanpassade CV:n.
+  author: Erland Lindmark
+analysis:
+  profile: workflow_research_heavy
+  model_robustness: stateful
+  runtime:
+    strategy: peer_candidates
+    candidates:
+    - runtime_id: chatgpt_chat
+      suitability: recommended
+      activate_by_default: true
+      rationale: Stödjer research, filer och stegvis arbete i konversation.
+    - runtime_id: chatgpt_custom
+      suitability: recommended
+      activate_by_default: true
+      rationale: Passar interaktiv CV-research och dokumentgenerering.
+    - runtime_id: claude_projects
+      suitability: reduced
+      activate_by_default: false
+      rationale: Möjlig senare portering men inte nödvändig för första versionen.
+    - runtime_id: opencode
+      suitability: reduced
+      activate_by_default: false
+      rationale: Lokal agentruntime är möjlig men inte central för CV-användningsfallet.
+    - runtime_id: openai_plugin
+      suitability: reduced
+      activate_by_default: false
+      rationale: Skills kan återanvändas men persistent researchworkspace och dokumentleverans
+        behöver ytterligare runtime-stöd.
+instructions:
+  canonical: assistant/instructions.md
+  core_contract:
+    enabled: true
+    required_markers:
+    - SOURCE-APPROVAL-GATE
+    - NO-FABRICATION
+    - EVIDENCE-TRACEABILITY
+    - TARGET-FIRST
+    - USER-CONTROL
+    - COMPACT-CHAT
+    required_runtime_dependencies: []
+    max_required_file_hops: 1
+    knowledge_may_not_be_required_for_core_behavior: true
+model_robustness:
+  level: stateful
+  separate_model_instructions: false
+  prefer_deterministic_validation: true
+  max_core_policy_hops: 1
+workflow:
+  mode: explicit_state_machine
+  policy: assistant/policies/workflow-policy.md
+  operational_core:
+  - read_project_contract
+  - read_project_status
+  - select_one_state_or_bounded_goal
+  - load_only_relevant_policy
+  - execute_change
+  - validate_deterministically
+  - correct_before_completion_on_failure
+  - update_structured_status_after_pass
+  - rebuild_project_zip_when_required
+  - recommend_next_step_from_actual_state
+  states:
+    idea_analysis:
+      next:
+      - architecture
+    architecture:
+      next:
+      - planning
+    planning:
+      next:
+      - implementation
+    implementation:
+      next:
+      - validation
+    validation:
+      next:
+      - implementation
+      - packaging
+    packaging:
+      next:
+      - release
+    release:
+      next:
+      - maintenance
+    maintenance:
+      next:
+      - implementation
+      - validation
+    blocked:
+      next: []
+    paused:
+      next: []
+capabilities:
+  contract_version: 1
+  recommendation_mode: inferred_from_use_case
+  ask_user_only_when_business_choice_is_ambiguous: true
+  requirements:
+    web:
+      level: required
+    filesystem:
+      read: required
+      write: required
+    shell:
+      level: optional
+    code_execution:
+      level: recommended
+    structured_data:
+      level: required
+    persistent_state:
+      level: required
+    external_tools:
+      level: optional
+      preferred_protocols:
+      - mcp
+    image_generation:
+      level: not_required
+artifacts:
+  contract_version: 1
+  outputs:
+    development_plan:
+      kind: document
+      format: markdown
+      requirement: required
+      persistence: persistent
+      multiplicity: one
+    project_package:
+      kind: package
+      format: zip
+      requirement: required
+      persistence: persistent
+      multiplicity: one
+      filename_pattern: <project-id>-project.zip
+    runtime_package:
+      kind: distribution
+      format: zip
+      requirement: required
+      persistence: persistent
+      multiplicity: many
+    validation_report:
+      kind: report
+      format: structured
+      requirement: required
+      persistence: persistent
+      multiplicity: one
+    parity_report:
+      kind: report
+      format: markdown
+      requirement: conditional
+      condition: multiple_runtimes
+      persistence: persistent
+      multiplicity: one
+    checksums:
+      kind: metadata
+      format: sha256
+      requirement: required
+      persistence: persistent
+      multiplicity: one
+  legacy_mapping:
+    project_zip: project_package
+    chat_zip: runtime_package
+    custom_gpt_zip: runtime_package
+    validation_report: validation_report
+    parity_report: parity_report
+    checksums: checksums
+workspace_state:
+  contract_version: 1
+  workspace:
+    requirement: required
+    persistence: required
+    portable: true
+    separate_from_assistant: true
+    artifact: project_package
+  state:
+    requirement: required
+    persistence: required
+    authority: workspace_file
+    format: yaml
+    path: project-status.yaml
+    conversation_fallback: false
+  runtime_preferences:
+    chat: conversation_or_file
+    agent: workspace_file
+knowledge_architecture:
+  canonical_root: knowledge
+  custom_gpt:
+    priority:
+    - knowledge/cv-writing-guidelines.md
+    - knowledge/cv-output-contract.md
+    - knowledge/artifact-delivery-contract.md
+    - knowledge/research-evidence-contract.md
+    - knowledge/job-fit-contract.md
+    - knowledge/source-research-guidelines.md
+structure:
+  conversation_starters:
+    path: conversation-starters
+  runtime_policy:
+    path: assistant/policies
+  schemas:
+    path: schemas
+  templates:
+    path: templates
+runtime_parity:
+  registered_runtimes:
+  - chatgpt_chat
+  - chatgpt_custom
+  - claude_projects
+  - opencode
+  - openai_plugin
+runtime:
+  primary: none
+  chat_zip:
+    enabled: true
+    start_here_template: templates/START-HERE.chat.md.tpl
+    include_schemas: false
+    include_templates: false
+  custom_gpt:
+    enabled: true
+    instruction:
+      mode: compiled
+      max_characters: 8000
+    knowledge:
+      max_files: 20
+      strategy: prioritize
+    builder:
+      runtime_contract: builder/runtime-contract.json
+    templates:
+      capabilities: templates/capabilities.md.tpl
+      readme: templates/README.custom-gpt.md.tpl
+      validation_report: templates/custom-gpt-validation-report.md.tpl
+      compatibility: templates/COMPATIBILITY.md.tpl
+  claude:
+    enabled: false
+  opencode:
+    enabled: false
+  plugin:
+    enabled: false
+build:
+  build_chat_zip: true
+  build_custom_gpt_zip: true
+  build_claude_zip: false
+  build_opencode_zip: false
+  build_plugin_zip: false
+build_system:
+  targets:
+  - project
+  - chat
+  - custom-gpt
+  runtime_targets:
+    chat:
+      runtime_id: chatgpt_chat
+      runtime_key: chat_zip
+      builder: chat
+      artifact_type: chat_zip
+      filename_pattern: <project-id>-chat-<version>.zip
+    custom-gpt:
+      runtime_id: chatgpt_custom
+      runtime_key: custom_gpt
+      builder: custom_gpt
+      artifact_type: custom_gpt_zip
+      filename_pattern: <project-id>-custom-gpt-<version>.zip
+ci:
+  enabled: true
+  workflow: .github/workflows/ci.yml
+release:
+  github:
+    enabled: true
+    workflow: .github/workflows/release.yml
+testing:
+  manifest: tests-manifest.yaml
+  manifest_schema: schemas/test-manifest.schema.json
+  eval_case_schema: schemas/eval-case.schema.json
+tools:
+  contract_version: 1
+  tools: []

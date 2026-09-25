@@ -1,0 +1,11 @@
+schema_version: 1
+sources: []
+claims: []
+conflicts: []
+# source fields:
+# - id, approval_status, identity_confidence, source_class, reference
+# claim fields:
+# - id, type, statement, source_ids, evidence_strength, status, notes
+# status: usable | clarification_required | excluded
+# conflict fields:
+# - id, claim_ids, description, resolution_status, resolution
